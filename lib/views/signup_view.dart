@@ -1,5 +1,4 @@
 import 'package:chat_app/constants.dart';
-import 'package:chat_app/views/login_view.dart';
 import 'package:chat_app/widgets/custom_elevated_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -51,10 +50,7 @@ class SignUpView extends StatelessWidget {
                 SizedBox(width: 8),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginView()),
-                    );
+                    Navigator.pop(context);
                   },
                   child: Text(
                     'Sign In',

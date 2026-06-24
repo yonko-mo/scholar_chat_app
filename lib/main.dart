@@ -1,4 +1,5 @@
 import 'package:chat_app/views/login_view.dart';
+import 'package:chat_app/views/signup_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +11,13 @@ class ScholarChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, 
-    home: LoginView());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      routes: {
+        'loginView': (context) => LoginView(),
+        'signUpView': (context) => SignUpView(),
+      },
+      initialRoute: 'loginView',
+    );
   }
 }
