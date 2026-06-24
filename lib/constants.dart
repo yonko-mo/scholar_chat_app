@@ -1,5 +1,8 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
-const primaryColor = Color(0xff274460);
+const kPrimaryColor = Color(0xff274460);
 
-const signUpTextColor = Color(0xff4f6f83);
+const kLoginId = 'signInView';
+const kSignUpId = 'signUpView';
+
+const kSignUpAndSignInTextColor = Color(0xff4f6f83);

@@ -1,3 +1,4 @@
+import 'package:chat_app/constants.dart';
 import 'package:chat_app/views/login_view.dart';
 import 'package:chat_app/views/signup_view.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +15,10 @@ class ScholarChatApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        'loginView': (context) => LoginView(),
-        'signUpView': (context) => SignUpView(),
+        kLoginId:(context) => LoginView(),
+        kSignUpId: (context) => SignUpView(),
       },
-      initialRoute: 'loginView',
+      initialRoute: kLoginId,
     );
   }
 }
