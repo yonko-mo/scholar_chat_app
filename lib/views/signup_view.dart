@@ -1,11 +1,11 @@
 import 'package:chat_app/constants.dart';
-import 'package:chat_app/views/signup_view.dart';
+import 'package:chat_app/views/login_view.dart';
 import 'package:chat_app/widgets/custom_elevated_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class SignUpView extends StatelessWidget {
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class LoginView extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Sign in',
+                'Sign up',
                 style: TextStyle(color: Colors.white, fontSize: 24),
               ),
             ),
@@ -39,13 +39,13 @@ class LoginView extends StatelessWidget {
             SizedBox(height: 16),
             CustomTextField(hintText: 'Password'),
             SizedBox(height: 32),
-            CustomElevatedButton(label: 'Sign In', onPressed: () {}),
+            CustomElevatedButton(label: 'Sign Up', onPressed: () {}),
             SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "don't have an account?",
+                  "already have an account?",
                   style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(width: 8),
@@ -53,11 +53,11 @@ class LoginView extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignUpView()),
+                      MaterialPageRoute(builder: (context) => LoginView()),
                     );
                   },
                   child: Text(
-                    'Sign Up',
+                    'Sign In',
                     style: TextStyle(color: signUpTextColor),
                   ),
                 ),

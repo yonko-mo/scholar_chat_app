@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  final String text;
-  const CustomElevatedButton({super.key, required this.text});
+  final String label;
+  final VoidCallback? onPressed;
+  const CustomElevatedButton({super.key, required this.label,required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,9 @@ class CustomElevatedButton extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
-          text,
+          label,
           style: TextStyle(color: Color(0xff274460), fontSize: 18),
         ),
       ),
