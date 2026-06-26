@@ -70,6 +70,7 @@ class _LoginViewState extends State<LoginView> {
                         try {
                           await signInUser();
                           showSnackBar(context, 'login success');
+                          formKey.currentState!.reset();
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
                             showSnackBar(

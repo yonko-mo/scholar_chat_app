@@ -71,6 +71,7 @@ class _SignUpViewState extends State<SignUpView> {
                         try {
                           await registerUser();
                           showSnackBar(context, 'registration success');
+                          formKey.currentState!.reset();
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
                             showSnackBar(context, 'weak password');
