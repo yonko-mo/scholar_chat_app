@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-import 'dart:developer';
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/widgets/custom_elevated_button.dart';
@@ -106,9 +105,17 @@ class _LoginViewState extends State<LoginView> {
                               context,
                               'Wrong password provided for that user.',
                             );
+                          } else {
+                            showSnackBar(
+                              context,
+                              e.message ?? 'Authentication failed.',
+                            );
                           }
                         } catch (e) {
-                          log(e.toString());
+                          showSnackBar(
+                            context,
+                            'Something went wrong. Please try again.',
+                          );
                         }
                         isLoading = false;
                         setState(() {});

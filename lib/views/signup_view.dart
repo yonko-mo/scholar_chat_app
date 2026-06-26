@@ -1,7 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
-
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/widgets/custom_elevated_button.dart';
@@ -102,9 +100,17 @@ class _SignUpViewState extends State<SignUpView> {
                             showSnackBar(context, 'weak password');
                           } else if (e.code == 'email-already-in-use') {
                             showSnackBar(context, 'email already in use');
+                          } else {
+                            showSnackBar(
+                              context,
+                              e.message ?? 'Registration failed.',
+                            );
                           }
                         } catch (e) {
-                          log(e.toString());
+                          showSnackBar(
+                            context,
+                            'Something went wrong. Please try again.',
+                          );
                         }
                         isLoading = false;
                         setState(() {});
