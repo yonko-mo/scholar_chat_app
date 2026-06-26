@@ -15,9 +15,9 @@ class LoginView extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              SizedBox(height: 75),
+              const SizedBox(height: 75),
               Image.asset('assets/images/scholar.png'),
-              Text(
+              const Text(
                 'Scholar Chat',
                 style: TextStyle(
                   color: Colors.white,
@@ -25,34 +25,34 @@ class LoginView extends StatelessWidget {
                   fontFamily: 'pacifico',
                 ),
               ),
-              SizedBox(height: 100),
-              Align(
+              const SizedBox(height: 100),
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Sign in',
                   style: TextStyle(color: Colors.white, fontSize: 24),
                 ),
               ),
-              SizedBox(height: 16),
-              CustomTextField(hintText: 'Email'),
-              SizedBox(height: 16),
-              CustomTextField(hintText: 'Password'),
-              SizedBox(height: 32),
+              const SizedBox(height: 16),
+              const CustomTextField(hintText: 'Email'),
+              const SizedBox(height: 16),
+              const CustomTextField(hintText: 'Password'),
+              const SizedBox(height: 32),
               CustomElevatedButton(label: 'Sign In', onPressed: () {}),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "don't have an account?",
                     style: TextStyle(color: Colors.white),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, kSignUpId);
                     },
-                    child: Text(
+                    child: const Text(
                       'Sign Up',
                       style: TextStyle(color: kSignUpAndSignInTextColor),
                     ),

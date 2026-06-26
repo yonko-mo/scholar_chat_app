@@ -17,7 +17,7 @@ class CustomElevatedButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           label,
-          style: TextStyle(color: Color(0xff274460), fontSize: 18),
+          style: const TextStyle(color: Color(0xff274460), fontSize: 18),
         ),
       ),
     );

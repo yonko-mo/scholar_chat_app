@@ -19,8 +19,8 @@ class ScholarChatApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        kLoginId: (context) => LoginView(),
-        kSignUpId: (context) => SignUpView(),
+        kLoginId: (context) => const LoginView(),
+        kSignUpId: (context) => const SignUpView(),
       },
       initialRoute: kLoginId,
     );

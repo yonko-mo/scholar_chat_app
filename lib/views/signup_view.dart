@@ -1,11 +1,23 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:developer';
+
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/widgets/custom_elevated_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
 
+  @override
+  State<SignUpView> createState() => _SignUpViewState();
+}
+
+class _SignUpViewState extends State<SignUpView> {
+  String? email;
+  String? password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +27,9 @@ class SignUpView extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              SizedBox(height: 75),
+              const SizedBox(height: 75),
               Image.asset('assets/images/scholar.png'),
-              Text(
+              const Text(
                 'Scholar Chat',
                 style: TextStyle(
                   color: Colors.white,
@@ -25,34 +37,60 @@ class SignUpView extends StatelessWidget {
                   fontFamily: 'pacifico',
                 ),
               ),
-              SizedBox(height: 100),
-              Align(
+              const SizedBox(height: 100),
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Sign up',
                   style: TextStyle(color: Colors.white, fontSize: 24),
                 ),
               ),
-              SizedBox(height: 16),
-              CustomTextField(hintText: 'Email'),
-              SizedBox(height: 16),
-              CustomTextField(hintText: 'Password'),
-              SizedBox(height: 32),
-              CustomElevatedButton(label: 'Sign Up', onPressed: () {}),
-              SizedBox(height: 8),
+              const SizedBox(height: 16),
+              CustomTextField(
+                hintText: 'Email',
+                onChanged: (value) {
+                  email = value;
+                },
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                hintText: 'Password',
+                onChanged: (value) {
+                  password = value;
+                },
+              ),
+              const SizedBox(height: 32),
+              CustomElevatedButton(
+                label: 'Sign Up',
+                onPressed: () async {
+                  try {
+                    await registerUser();
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'weak-password') {
+                      showSnackBar(context, 'weak password');
+                    } else if (e.code == 'email-already-in-use') {
+                      showSnackBar(context, 'email already in use');
+                    }
+                  } catch (e) {
+                    log(e.toString());
+                  }
+                  showSnackBar(context, 'registration success');
+                },
+              ),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "already have an account?",
                     style: TextStyle(color: Colors.white),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Text(
+                    child: const Text(
                       'Sign In',
                       style: TextStyle(color: kSignUpAndSignInTextColor),
                     ),
@@ -64,5 +102,16 @@ class SignUpView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  Future<void> registerUser() async {
+    UserCredential userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email!, password: password!);
   }
 }
