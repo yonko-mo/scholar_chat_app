@@ -2,7 +2,9 @@
 
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
+import 'package:chat_app/helper/validators.dart';
 import 'package:chat_app/widgets/custom_elevated_button.dart';
+import 'package:chat_app/widgets/custom_logo.dart';
 import 'package:chat_app/widgets/custom_text_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -33,16 +35,7 @@ class _SignUpViewState extends State<SignUpView> {
               key: formKey,
               child: Column(
                 children: [
-                  const SizedBox(height: 75),
-                  Image.asset('assets/images/scholar.png'),
-                  const Text(
-                    'Scholar Chat',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 32,
-                      fontFamily: 'pacifico',
-                    ),
-                  ),
+                  const CustomLogo(),
                   const SizedBox(height: 100),
                   const Align(
                     alignment: Alignment.centerLeft,
@@ -57,16 +50,7 @@ class _SignUpViewState extends State<SignUpView> {
                     onChanged: (value) {
                       email = value;
                     },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'email is required';
-                      }
-                      final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                      if (!emailRegExp.hasMatch(value)) {
-                        return 'please enter a valid email';
-                      }
-                      return null;
-                    },
+                    validator: Validators.validateEmail,
                   ),
                   const SizedBox(height: 16),
                   CustomTextFormField(
@@ -75,15 +59,7 @@ class _SignUpViewState extends State<SignUpView> {
                       password = value;
                     },
                     obSecureText: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'password is required';
-                      }
-                      if (value.length < 6) {
-                        return 'password must be at least 6 characters';
-                      }
-                      return null;
-                    },
+                    validator: Validators.validatePassword,
                   ),
                   const SizedBox(height: 32),
                   CustomElevatedButton(
