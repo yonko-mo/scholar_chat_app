@@ -71,7 +71,13 @@ class _SignUpViewState extends State<SignUpView> {
                         try {
                           await registerUser();
                           showSnackBar(context, 'registration success');
+                          Navigator.pushNamed(
+                            context,
+                            kChatId,
+                            arguments: email,
+                          );
                           formKey.currentState!.reset();
+                          
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
                             showSnackBar(context, 'weak password');
@@ -126,7 +132,9 @@ class _SignUpViewState extends State<SignUpView> {
   }
 
   Future<void> registerUser() async {
-    await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email!, password: password!);
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email!,
+      password: password!,
+    );
   }
 }

@@ -70,6 +70,11 @@ class _LoginViewState extends State<LoginView> {
                         try {
                           await signInUser();
                           showSnackBar(context, 'login success');
+                          Navigator.pushNamed(
+                            context,
+                            kChatId,
+                            arguments: email,
+                          );
                           formKey.currentState!.reset();
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
@@ -131,7 +136,9 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future<void> signInUser() async {
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email!, password: password!);
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email!,
+      password: password!,
+    );
   }
 }
