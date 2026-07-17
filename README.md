@@ -5,6 +5,8 @@ Scholar Chat is a mobile chat application built with **Flutter** and integrated 
 ## Demo
 
 
+https://github.com/user-attachments/assets/58ed6f0e-8e1a-48c3-89af-ab57f18c73f5
+
 
 ## Features
 
